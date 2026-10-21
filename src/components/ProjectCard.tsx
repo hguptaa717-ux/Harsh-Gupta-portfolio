@@ -40,6 +40,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           alt: title,
         }))}
       />
+
       <Flex
         s={{ direction: "column" }}
         fillWidth
@@ -55,14 +56,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Heading>
           </Flex>
         )}
+
         {(avatars?.length > 0 || description?.trim() || hasContent) && (
           <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+            {avatars?.length > 0 && (
+              <AvatarGroup avatars={avatars} size="m" reverse />
+            )}
+
             {description?.trim() && (
-              <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
+              <Text
+                wrap="balance"
+                variant="body-default-s"
+                onBackground="neutral-weak"
+              >
                 {description}
               </Text>
             )}
+
             <Flex gap="24" wrap>
               {hasContent && (
                 <SmartLink
@@ -70,9 +80,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="body-default-s">Explore project</Text>
                 </SmartLink>
               )}
+
               {link && (
                 <SmartLink
                   suffixIcon="arrowUpRightFromSquare"
