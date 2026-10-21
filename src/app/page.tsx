@@ -42,6 +42,7 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
           {home.featured.display && (
@@ -65,16 +66,29 @@ export default function Home() {
               </Badge>
             </RevealFx>
           )}
+
           <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
           </RevealFx>
-          <RevealFx translateY="8" delay={200} fillWidth horizontal="center" paddingBottom="32">
-            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
+
+          <RevealFx
+            translateY="8"
+            delay={200}
+            fillWidth
+            horizontal="center"
+            paddingBottom="32"
+          >
+            <Text
+              wrap="balance"
+              onBackground="neutral-weak"
+              variant="heading-default-xl"
+            >
               {home.subline}
             </Text>
           </RevealFx>
+
           <RevealFx paddingTop="12" delay={400} horizontal="center" paddingLeft="12">
             <Button
               id="about"
@@ -101,9 +115,16 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={600}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
+
+      <Column fillWidth gap="m">
+        <Heading as="h2" variant="display-strong-xs" wrap="balance">
+          Projects
+        </Heading>
+        <RevealFx translateY="16" delay={600}>
+          <Projects range={[1, 1]} />
+        </RevealFx>
+      </Column>
+
       {routes["/blog"] && (
         <Column fillWidth gap="24" marginBottom="l">
           <Row fillWidth paddingRight="64">
@@ -134,6 +155,7 @@ export default function Home() {
           </Row>
         </Column>
       )}
+
       <Projects range={[2]} />
       <Newsletter />
     </Column>
