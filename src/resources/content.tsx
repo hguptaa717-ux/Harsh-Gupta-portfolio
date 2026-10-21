@@ -6,7 +6,7 @@ const person: Person = {
   lastName: "Gupta",
   name: `Harsh Gupta`,
   role: "Business Analytics MBA Candidate",
-  avatar: "/images/avatar.jpg",
+ avatar: "/images/harsh-gupta.jpg..jpeg",
   email: "harsh.gupta37@s.amity.edu",
   location: "Asia/Kolkata",
   languages: ["English"],
