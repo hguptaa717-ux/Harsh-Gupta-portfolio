@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import styles from "./IntroLoader.module.scss";
 
-const storageKey = "harsh-portfolio-intro-seen";
+const storageKey = "harsh-portfolio-intro-seen-v2";
+const introDuration = 2500;
 
 export function IntroLoader() {
   const [visible, setVisible] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     try {
@@ -18,9 +20,28 @@ export function IntroLoader() {
       // Continue showing the intro if session storage is unavailable.
     }
 
-    const timer = window.setTimeout(finishIntro, 5000);
+    const startTime = Date.now();
+    let animationFrame = 0;
 
-    return () => window.clearTimeout(timer);
+    const updateProgress = () => {
+      const elapsed = Date.now() - startTime;
+      const nextProgress = Math.min(
+        100,
+        Math.round((elapsed / introDuration) * 100),
+      );
+
+      setProgress(nextProgress);
+
+      if (nextProgress >= 100) {
+        finishIntro();
+      } else {
+        animationFrame = window.requestAnimationFrame(updateProgress);
+      }
+    };
+
+    animationFrame = window.requestAnimationFrame(updateProgress);
+
+    return () => window.cancelAnimationFrame(animationFrame);
   }, []);
 
   function finishIntro() {
@@ -30,6 +51,7 @@ export function IntroLoader() {
       // The intro can still be dismissed if session storage is unavailable.
     }
 
+    setProgress(100);
     setVisible(false);
   }
 
@@ -41,21 +63,24 @@ export function IntroLoader() {
         <h1 className={styles.name}>Harsh Gupta</h1>
         <p className={styles.subtitle}>Business Analytics Portfolio</p>
 
-        <div
-          className={styles.progressTrack}
-          role="progressbar"
-          aria-label="Loading portfolio"
-        >
-          <div className={styles.progressBar} />
+        <div className={styles.progressRow}>
+          <div
+            className={styles.progressTrack}
+            role="progressbar"
+            aria-label="Loading portfolio"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progress}
+          >
+            <div
+              className={styles.progressBar}
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <span className={styles.percentage} aria-label={`${progress}% loaded`}>
+            {progress}%
+          </span>
         </div>
-
-        <button
-          className={styles.skipButton}
-          type="button"
-          onClick={finishIntro}
-        >
-          Skip intro
-        </button>
       </div>
     </div>
   );
