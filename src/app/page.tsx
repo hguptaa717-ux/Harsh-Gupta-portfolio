@@ -130,6 +130,7 @@ export default function Home() {
           <Row fillWidth paddingRight="64">
             <Line maxWidth={48} />
           </Row>
+
           <Row
             fillWidth
             gap="24"
@@ -146,10 +147,12 @@ export default function Home() {
                 Latest from the blog
               </Heading>
             </Row>
+
             <Row flex={3} paddingX="20" s={{ paddingX: "0" }}>
               <Posts range={[1, 2]} columns="2" />
             </Row>
           </Row>
+
           <Row fillWidth paddingLeft="64" horizontal="end">
             <Line maxWidth={48} />
           </Row>
@@ -157,6 +160,42 @@ export default function Home() {
       )}
 
       <Projects range={[2]} />
+
+      {/* Contact callout linking to the separate Contact page */}
+      <Column
+        as="section"
+        fillWidth
+        gap="m"
+        padding="l"
+        horizontal="center"
+        style={{
+          border: "1px solid rgba(255, 255, 255, 0.45)",
+          borderRadius: "28px",
+          background: "rgba(255, 255, 255, 0.28)",
+          backdropFilter: "blur(18px) saturate(145%)",
+          WebkitBackdropFilter: "blur(18px) saturate(145%)",
+          boxShadow: "0 16px 42px rgba(76, 62, 42, 0.1)",
+          textAlign: "center",
+        }}
+      >
+        <Text variant="label-strong-s" onBackground="brand-strong">
+          CONTACT
+        </Text>
+
+        <Heading as="h2" variant="heading-strong-xl" wrap="balance">
+          Let’s connect and work together!
+        </Heading>
+
+        <Text variant="body-default-m" onBackground="neutral-weak">
+          Have an opportunity or want to discuss my projects? I’d be glad to hear
+          from you.
+        </Text>
+
+        <Button href="/contact" variant="primary" arrowIcon>
+          Get in touch
+        </Button>
+      </Column>
+
       <Newsletter />
     </Column>
   );
