@@ -78,17 +78,38 @@ export default async function RootLayout({
                     root.setAttribute('data-' + key, value);
                   });
 
-                  const resolveTheme = (themeValue) => {
-                    if (!themeValue || themeValue === 'system') {
-                      return window.matchMedia('(prefers-color-scheme: dark)').matches
-                        ? 'dark'
-                        : 'light';
-                    }
-                    return themeValue;
-                  };
+                  function applyTimeBasedTheme() {
+                    const hour = new Date().getHours();
+                    const theme = hour >= 20 || hour < 6 ? 'dark' : 'light';
 
-                  const savedTheme = localStorage.getItem('data-theme');
-                  root.setAttribute('data-theme', resolveTheme(savedTheme));
+                    root.setAttribute('data-theme', theme);
+                    localStorage.setItem('data-theme', theme);
+                  }
+
+                  function scheduleNextThemeChange() {
+                    const now = new Date();
+                    const hour = now.getHours();
+                    const nextChange = new Date(now);
+
+                    if (hour < 6) {
+                      nextChange.setHours(6, 0, 0, 0);
+                    } else if (hour < 20) {
+                      nextChange.setHours(20, 0, 0, 0);
+                    } else {
+                      nextChange.setDate(nextChange.getDate() + 1);
+                      nextChange.setHours(6, 0, 0, 0);
+                    }
+
+                    const delay = nextChange.getTime() - now.getTime();
+
+                    window.setTimeout(function() {
+                      applyTimeBasedTheme();
+                      scheduleNextThemeChange();
+                    }, delay);
+                  }
+
+                  applyTimeBasedTheme();
+                  scheduleNextThemeChange();
 
                   Object.keys(config).forEach((key) => {
                     const value = localStorage.getItem('data-' + key);
@@ -98,7 +119,7 @@ export default async function RootLayout({
                   });
                 } catch (e) {
                   console.error('Failed to initialize theme:', e);
-                  document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.setAttribute('data-theme', 'light');
                 }
               })();
             `,
@@ -234,7 +255,7 @@ export default async function RootLayout({
               />
             </defs>
 
-            {/* Change the background tint while letting the original gradient show through */}
+            {/* Background tint */}
             <rect className="analytics-wash" width="1440" height="900" />
 
             {/* Soft cyan and blue glow */}
@@ -255,7 +276,7 @@ export default async function RootLayout({
               filter="url(#softGlow)"
             />
 
-            {/* Chart-like connections kept near the edges */}
+            {/* Chart-like connections */}
             <g fill="none" stroke="url(#analyticsLine)" strokeWidth="1.5">
               <path d="M -20 690 L 120 620 L 235 665 L 355 565 L 490 610 L 620 530" />
               <path d="M 820 340 L 950 390 L 1075 305 L 1190 350 L 1325 245 L 1470 290" />
@@ -279,7 +300,7 @@ export default async function RootLayout({
               <circle cx="1270" cy="640" r="4" />
             </g>
 
-            {/* Moving points suggest data flowing through charts */}
+            {/* Moving data points */}
             <circle className="moving-particle" r="4" fill="#299db7">
               <animateMotion dur="12s" repeatCount="indefinite">
                 <mpath href="#leftDataFlow" />
