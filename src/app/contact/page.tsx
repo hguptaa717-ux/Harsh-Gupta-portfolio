@@ -8,7 +8,7 @@ function EmailIcon() {
       height="30"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="#ffffff"
       strokeWidth="1.7"
       strokeLinecap="round"
       strokeLinejoin="round"
