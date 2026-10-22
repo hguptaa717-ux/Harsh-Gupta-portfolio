@@ -4,9 +4,9 @@ import { Line, Row, Text } from "@once-ui-system/core";
 const person: Person = {
   firstName: "Harsh",
   lastName: "Gupta",
-  name: `Harsh Gupta`,
+  name: "Harsh Gupta",
   role: "Business Analytics MBA Candidate",
- avatar: "/images/harsh-gupta.jpg..jpeg",
+  avatar: "/images/harsh-gupta.jpg..jpeg",
   email: "harsh.gupta37@s.amity.edu",
   location: "Asia/Kolkata",
   languages: ["English"],
@@ -29,7 +29,7 @@ const social: Social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/in/harshgupta",
+    link: "https://www.linkedin.com/in/harshgupta-businessanalyst/",
     essential: true,
   },
   {
@@ -105,28 +105,6 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "Agile Capital Services",
-        timeframe: "May 2026 – July 2026",
-        role: "Management Trainee",
-        achievements: [
-          <>
-            Completed a 45-day structured management trainee program with
-            cross-functional exposure to Sales, Marketing, HR, and Finance
-            operations.
-          </>,
-          <>
-            Analyzed operational data across four business functions, identified
-            process gaps, and presented findings and recommendations in a
-            remote capstone project.
-          </>,
-          <>
-            Built cross-functional coordination and business understanding
-            through direct exposure to core business operations.
-          </>,
-        ],
-        images: [],
-      },
-      {
         company: "AGMS & Co",
         timeframe: "December 2024 – August 2025",
         role: "Accounts Assistant",
@@ -147,15 +125,69 @@ const about: About = {
         images: [],
       },
       {
-        company: "JS Bedi & Associates",
-        timeframe: "January 2023",
-        role: "Intern",
+        company: "Agile Capital Services",
+        timeframe: "May 2026 – June 2026",
+        role: "Management Trainee Intern",
         achievements: [
           <>
-            Assisted with journal entries, bookkeeping, payroll deductions, and
-            verification of supporting documents.
+            Completed a structured management trainee program with
+            cross-functional exposure to Sales, Marketing, HR, and Finance
+            operations.
+          </>,
+          <>
+            Analyzed operational data across four business functions, identified
+            process gaps, and presented findings and recommendations in a
+            remote capstone project.
+          </>,
+          <>
+            Built cross-functional coordination and business understanding
+            through direct exposure to core business operations.
           </>,
         ],
+        images: [],
+      },
+      {
+        company: "JS Bedi & Associates",
+        timeframe: "January 2024 – February 2024",
+        role: "Accounting Intern",
+        achievements: [
+          <>
+            Assisted with payroll processing, employee data verification, GST
+            reconciliation, and financial documentation.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "CA Vikas Bagga & Co.",
+        timeframe: "June 2023",
+        role: "Account Assistant Intern",
+        achievements: [
+          <>Performed GST reconciliation and prepared financial statements from trial balance data using Excel.</>,
+          <>Created client profiles in Computax and assisted with Form 16 preparation.</>,
+          <>Recorded bank, credit card, sales, purchase, and TDS entries in Tally Prime.</>,
+        ],
+        images: [],
+      },
+      {
+        company: "JSBA Consulting Pvt. Ltd.",
+        timeframe: "January 2023 – February 2023",
+        role: "Account Assistant Intern",
+        achievements: [],
+        images: [],
+      },
+      {
+        company: "KBDS & Co.",
+        timeframe: "September 2022",
+        role: "Account Assistant Intern",
+        achievements: [],
+        images: [],
+      },
+      {
+        company: "Nitin Associates",
+        timeframe: "March 2022",
+        role: "Account Assistant Intern",
+        achievements: [],
         images: [],
       },
     ],
@@ -186,7 +218,12 @@ const about: About = {
       },
       {
         title: "Business and finance operations",
-        description: <>Operational data analysis, transaction reconciliation, payroll workflows, and GST/TDS documentation.</>,
+        description: (
+          <>
+            Operational data analysis, transaction reconciliation, payroll
+            workflows, and GST/TDS documentation.
+          </>
+        ),
         tags: [],
         images: [],
       },
