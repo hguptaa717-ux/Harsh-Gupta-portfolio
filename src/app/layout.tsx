@@ -198,19 +198,19 @@ export default async function RootLayout({
             <style>
               {`
                 .analytics-wash {
-                  fill: rgba(218, 244, 255, 0.48);
+                  fill: rgba(255, 244, 225, 0.42);
                 }
 
                 .analytics-glow {
-                  opacity: 0.46;
+                  opacity: 0.42;
                 }
 
                 :root[data-theme="dark"] .analytics-wash {
-                  fill: rgba(7, 25, 43, 0.3);
+                  fill: rgba(28, 22, 17, 0.38);
                 }
 
                 :root[data-theme="dark"] .analytics-glow {
-                  opacity: 0.25;
+                  opacity: 0.22;
                 }
 
                 @media (prefers-reduced-motion: reduce) {
@@ -224,21 +224,21 @@ export default async function RootLayout({
 
             <defs>
               <radialGradient id="cyanGlow">
-                <stop offset="0%" stopColor="#70e7f5" stopOpacity="0.8" />
-                <stop offset="45%" stopColor="#66d8ee" stopOpacity="0.34" />
-                <stop offset="100%" stopColor="#66d8ee" stopOpacity="0" />
+                <stop offset="0%" stopColor="#ffe3a3" stopOpacity="0.72" />
+                <stop offset="45%" stopColor="#ffd18a" stopOpacity="0.32" />
+                <stop offset="100%" stopColor="#ffd18a" stopOpacity="0" />
               </radialGradient>
 
               <radialGradient id="blueGlow">
-                <stop offset="0%" stopColor="#8acaff" stopOpacity="0.6" />
-                <stop offset="48%" stopColor="#8acaff" stopOpacity="0.24" />
-                <stop offset="100%" stopColor="#8acaff" stopOpacity="0" />
+                <stop offset="0%" stopColor="#ffc9a8" stopOpacity="0.58" />
+                <stop offset="48%" stopColor="#ffc9a8" stopOpacity="0.23" />
+                <stop offset="100%" stopColor="#ffc9a8" stopOpacity="0" />
               </radialGradient>
 
               <linearGradient id="analyticsLine" x1="0" y1="1" x2="1" y2="0">
-                <stop offset="0%" stopColor="#55c6d6" stopOpacity="0.08" />
-                <stop offset="50%" stopColor="#45b8cf" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#6ba8ef" stopOpacity="0.12" />
+                <stop offset="0%" stopColor="#d49a4a" stopOpacity="0.08" />
+                <stop offset="50%" stopColor="#c78b3b" stopOpacity="0.48" />
+                <stop offset="100%" stopColor="#e2ad69" stopOpacity="0.12" />
               </linearGradient>
 
               <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
@@ -255,10 +255,10 @@ export default async function RootLayout({
               />
             </defs>
 
-            {/* Background tint */}
+            {/* Warm background tint */}
             <rect className="analytics-wash" width="1440" height="900" />
 
-            {/* Soft cyan and blue glow */}
+            {/* Soft amber and peach glow */}
             <circle
               className="analytics-glow"
               cx="490"
@@ -285,7 +285,7 @@ export default async function RootLayout({
             </g>
 
             {/* Connected data points */}
-            <g fill="#49b9cc" fillOpacity="0.45">
+            <g fill="#c78b3b" fillOpacity="0.46">
               <circle cx="120" cy="620" r="3" />
               <circle cx="235" cy="665" r="4" />
               <circle cx="355" cy="565" r="3" />
@@ -301,20 +301,20 @@ export default async function RootLayout({
             </g>
 
             {/* Moving data points */}
-            <circle className="moving-particle" r="4" fill="#299db7">
+            <circle className="moving-particle" r="4" fill="#b8782c">
               <animateMotion dur="12s" repeatCount="indefinite">
                 <mpath href="#leftDataFlow" />
               </animateMotion>
             </circle>
 
-            <circle className="moving-particle" r="3.5" fill="#4d9fe8">
+            <circle className="moving-particle" r="3.5" fill="#d39a55">
               <animateMotion dur="16s" repeatCount="indefinite">
                 <mpath href="#rightDataFlow" />
               </animateMotion>
             </circle>
 
             {/* Gentle pulses on selected data points */}
-            <circle className="pulse-node" cx="355" cy="565" r="4" fill="#42b9cc">
+            <circle className="pulse-node" cx="355" cy="565" r="4" fill="#c78b3b">
               <animate
                 attributeName="r"
                 values="3;6;3"
@@ -329,7 +329,7 @@ export default async function RootLayout({
               />
             </circle>
 
-            <circle className="pulse-node" cx="1075" cy="305" r="4" fill="#5b9fe0">
+            <circle className="pulse-node" cx="1075" cy="305" r="4" fill="#d39a55">
               <animate
                 attributeName="r"
                 values="3;6;3"
