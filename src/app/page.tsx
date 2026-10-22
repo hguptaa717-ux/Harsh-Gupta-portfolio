@@ -120,6 +120,7 @@ export default function Home() {
         <Heading as="h2" variant="display-strong-xs" wrap="balance">
           Projects
         </Heading>
+
         <RevealFx translateY="16" delay={600}>
           <Projects range={[1, 1]} />
         </RevealFx>
@@ -161,40 +162,48 @@ export default function Home() {
 
       <Projects range={[2]} />
 
-      {/* Contact callout linking to the separate Contact page */}
-      <Column
-        as="section"
-        fillWidth
-        gap="m"
-        padding="l"
-        horizontal="center"
-        style={{
-          border: "1px solid rgba(255, 255, 255, 0.45)",
-          borderRadius: "28px",
-          background: "rgba(255, 255, 255, 0.28)",
-          backdropFilter: "blur(18px) saturate(145%)",
-          WebkitBackdropFilter: "blur(18px) saturate(145%)",
-          boxShadow: "0 16px 42px rgba(76, 62, 42, 0.1)",
-          textAlign: "center",
-        }}
-      >
-        <Text variant="label-strong-s" onBackground="brand-strong">
-          CONTACT
-        </Text>
+      {routes["/contact"] && (
+        <Column
+          as="section"
+          id="contact"
+          fillWidth
+          gap="m"
+          padding="l"
+          horizontal="center"
+          style={{
+            border: "1px solid rgba(255, 255, 255, 0.35)",
+            borderRadius: "28px",
+            background: "rgba(10, 25, 48, 0.76)",
+            backdropFilter: "blur(22px) saturate(155%)",
+            WebkitBackdropFilter: "blur(22px) saturate(155%)",
+            boxShadow:
+              "0 20px 55px rgba(25, 34, 48, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25)",
+            textAlign: "center",
+          }}
+        >
+          <Text variant="label-strong-s" style={{ color: "#f4c66a" }}>
+            CONTACT
+          </Text>
 
-        <Heading as="h2" variant="heading-strong-xl" wrap="balance">
-          Let’s connect and work together!
-        </Heading>
+          <Heading
+            as="h2"
+            variant="heading-strong-xl"
+            wrap="balance"
+            style={{ color: "#fffaf0" }}
+          >
+            Let’s connect and work together!
+          </Heading>
 
-        <Text variant="body-default-m" onBackground="neutral-weak">
-          Have an opportunity or want to discuss my projects? I’d be glad to hear
-          from you.
-        </Text>
+          <Text variant="body-default-m" style={{ color: "#f1f2f5" }}>
+            Have an opportunity or want to discuss my projects? I’d be glad to
+            hear from you.
+          </Text>
 
-        <Button href="/contact" variant="primary" arrowIcon>
-          Get in touch
-        </Button>
-      </Column>
+          <Button href="/contact" variant="primary" arrowIcon>
+            Get in touch
+          </Button>
+        </Column>
+      )}
 
       <Newsletter />
     </Column>
