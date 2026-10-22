@@ -12,6 +12,7 @@ function EmailIcon() {
       strokeWidth="1.7"
       strokeLinecap="round"
       strokeLinejoin="round"
+      style={{ color: "#ffffff" }}
     >
       <rect x="3" y="5" width="18" height="14" rx="2" />
       <path d="m3 7 9 6 9-6" />
@@ -27,6 +28,7 @@ function LinkedInIcon() {
       height="30"
       viewBox="0 0 24 24"
       fill="currentColor"
+      style={{ color: "#ffffff" }}
     >
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56c0 .95.79 1.72 1.77 1.72h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
     </svg>
