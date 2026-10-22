@@ -29,17 +29,54 @@ export async function generateMetadata() {
 }
 
 export default function About() {
+  const allExperiences = about.work.experiences;
+
+  const workExperiences = allExperiences.filter(
+    (experience) => experience.company === "AGMS & Co",
+  );
+
+  const internshipCompanies = [
+    "Agile Capital Services",
+    "JS Bedi & Associates",
+    "CA Vikas Bagga & Co.",
+  ];
+
+  const internshipExperiences = allExperiences.filter((experience) =>
+    internshipCompanies.includes(experience.company),
+  );
+
+  const extracurricularExperiences = allExperiences.filter(
+    (experience) => experience.company === "UMEED A DROP OF HOPE (NGO)",
+  );
+
+  const experienceSections = [
+    {
+      title: "Work Experience",
+      items: workExperiences,
+    },
+    {
+      title: "Internship Experience",
+      items: internshipExperiences,
+    },
+    {
+      title: "Extracurricular Activities",
+      items: extracurricularExperiences,
+    },
+  ];
+
   const structure = [
     {
       title: about.intro.title,
       display: about.intro.display,
       items: [],
     },
-    {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
-    },
+    ...experienceSections
+      .filter((section) => section.items.length > 0)
+      .map((section) => ({
+        title: section.title,
+        display: about.work.display,
+        items: section.items.map((experience) => experience.company),
+      })),
     {
       title: about.studies.title,
       display: about.studies.display,
@@ -51,6 +88,79 @@ export default function About() {
       items: about.technical.skills.map((skill) => skill.title),
     },
   ];
+
+  const renderExperiences = (
+    experiences: typeof about.work.experiences,
+  ) => (
+    <Column fillWidth gap="l" marginBottom="40">
+      {experiences.map((experience, index) => (
+        <Column
+          key={`${experience.company}-${experience.role}-${index}`}
+          fillWidth
+        >
+          <Row
+            fillWidth
+            horizontal="between"
+            vertical="end"
+            marginBottom="4"
+          >
+            <Text id={experience.company} variant="heading-strong-l">
+              {experience.company}
+            </Text>
+            <Text variant="heading-default-xs" onBackground="neutral-weak">
+              {experience.timeframe}
+            </Text>
+          </Row>
+
+          <Text
+            variant="body-default-s"
+            onBackground="brand-weak"
+            marginBottom="m"
+          >
+            {experience.role}
+          </Text>
+
+          {experience.achievements.length > 0 && (
+            <Column as="ul" gap="16">
+              {experience.achievements.map(
+                (achievement: React.ReactNode, achievementIndex: number) => (
+                  <Text
+                    as="li"
+                    variant="body-default-m"
+                    key={`${experience.company}-${achievementIndex}`}
+                  >
+                    {achievement}
+                  </Text>
+                ),
+              )}
+            </Column>
+          )}
+
+          {experience.images && experience.images.length > 0 && (
+            <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
+              {experience.images.map((image, imageIndex) => (
+                <Row
+                  key={imageIndex}
+                  border="neutral-medium"
+                  radius="m"
+                  minWidth={image.width}
+                  height={image.height}
+                >
+                  <Media
+                    enlarge
+                    radius="m"
+                    sizes={image.width.toString()}
+                    alt={image.alt}
+                    src={image.src}
+                  />
+                </Row>
+              ))}
+            </Row>
+          )}
+        </Column>
+      ))}
+    </Column>
+  );
 
   return (
     <Column maxWidth="m">
@@ -99,6 +209,7 @@ export default function About() {
               horizontal="center"
             >
               <Avatar src={person.avatar} size="xl" aria-label={person.name} />
+
               {person.languages && person.languages.length > 0 && (
                 <Row wrap gap="8">
                   {person.languages.map((language, index) => (
@@ -212,94 +323,23 @@ export default function About() {
               </Column>
             )}
 
-            {about.work.display && (
-              <>
-                <Heading
-                  as="h2"
-                  id={about.work.title}
-                  variant="display-strong-s"
-                  marginBottom="m"
-                >
-                  {about.work.title}
-                </Heading>
-
-                <Column fillWidth gap="l" marginBottom="40">
-                  {about.work.experiences.map((experience, index) => (
-                    <Column
-                      key={`${experience.company}-${experience.role}-${index}`}
-                      fillWidth
-                    >
-                      <Row
-                        fillWidth
-                        horizontal="between"
-                        vertical="end"
-                        marginBottom="4"
-                      >
-                        <Text id={experience.company} variant="heading-strong-l">
-                          {experience.company}
-                        </Text>
-                        <Text
-                          variant="heading-default-xs"
-                          onBackground="neutral-weak"
-                        >
-                          {experience.timeframe}
-                        </Text>
-                      </Row>
-
-                      <Text
-                        variant="body-default-s"
-                        onBackground="brand-weak"
+            {about.work.display &&
+              experienceSections.map(
+                (section) =>
+                  section.items.length > 0 && (
+                    <React.Fragment key={section.title}>
+                      <Heading
+                        as="h2"
+                        id={section.title}
+                        variant="display-strong-s"
                         marginBottom="m"
                       >
-                        {experience.role}
-                      </Text>
-
-                      <Column as="ul" gap="16">
-                        {experience.achievements.map(
-                          (achievement: React.ReactNode, index: number) => (
-                            <Text
-                              as="li"
-                              variant="body-default-m"
-                              key={`${experience.company}-${index}`}
-                            >
-                              {achievement}
-                            </Text>
-                          ),
-                        )}
-                      </Column>
-
-                      {experience.images && experience.images.length > 0 && (
-                        <Row
-                          fillWidth
-                          paddingTop="m"
-                          paddingLeft="40"
-                          gap="12"
-                          wrap
-                        >
-                          {experience.images.map((image, index) => (
-                            <Row
-                              key={index}
-                              border="neutral-medium"
-                              radius="m"
-                              minWidth={image.width}
-                              height={image.height}
-                            >
-                              <Media
-                                enlarge
-                                radius="m"
-                                sizes={image.width.toString()}
-                                alt={image.alt}
-                                src={image.src}
-                              />
-                            </Row>
-                          ))}
-                        </Row>
-                      )}
-                    </Column>
-                  ))}
-                </Column>
-              </>
-            )}
+                        {section.title}
+                      </Heading>
+                      {renderExperiences(section.items)}
+                    </React.Fragment>
+                  ),
+              )}
 
             {about.studies.display && (
               <>
@@ -378,9 +418,9 @@ export default function About() {
 
                       {skill.images && skill.images.length > 0 && (
                         <Row fillWidth paddingTop="m" gap="12" wrap>
-                          {skill.images.map((image, index) => (
+                          {skill.images.map((image, imageIndex) => (
                             <Row
-                              key={index}
+                              key={imageIndex}
                               border="neutral-medium"
                               radius="m"
                               minWidth={image.width}
