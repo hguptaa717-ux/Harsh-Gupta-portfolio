@@ -2,6 +2,7 @@
 
 import {
   AvatarGroup,
+  Badge,
   Carousel,
   Column,
   Flex,
@@ -31,6 +32,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   avatars,
   link,
 }) => {
+  const tools = description
+    ?.split("·")
+    .map((tool) => tool.trim())
+    .filter(Boolean);
+
   return (
     <Column fillWidth gap="m">
       <Carousel
@@ -57,20 +63,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </Flex>
         )}
 
-        {(avatars?.length > 0 || description?.trim() || hasContent) && (
+        {(avatars?.length > 0 || (tools && tools.length > 0) || hasContent) && (
           <Column flex={7} gap="16">
             {avatars?.length > 0 && (
               <AvatarGroup avatars={avatars} size="m" reverse />
             )}
 
-            {description?.trim() && (
-              <Text
-                wrap="balance"
-                variant="body-default-s"
-                onBackground="neutral-weak"
-              >
-                {description}
-              </Text>
+            {tools && tools.length > 0 && (
+              <Flex gap="8" wrap>
+                {tools.map((tool) => (
+                  <Badge
+                    key={tool}
+                    background="brand-alpha-weak"
+                    paddingX="12"
+                    paddingY="4"
+                    onBackground="neutral-strong"
+                    textVariant="label-default-s"
+                    arrow={false}
+                  >
+                    {tool}
+                  </Badge>
+                ))}
+              </Flex>
             )}
 
             <Flex gap="24" wrap>
