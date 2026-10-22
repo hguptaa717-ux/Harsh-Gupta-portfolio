@@ -12,10 +12,13 @@ import styles from "./Header.module.scss";
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
+const TimeDisplay: React.FC<TimeDisplayProps> = ({
+  timeZone,
+  locale = "en-GB",
+}) => {
   const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
         second: "2-digit",
         hour12: false,
       };
+
       const timeString = new Intl.DateTimeFormat(locale, options).format(now);
       setCurrentTime(timeString);
     };
@@ -43,11 +47,12 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
 
 export default TimeDisplay;
 
-// Pages in the menu, in order. A page shows when its route is enabled in
-// src/resources/once-ui.config.ts; add a page here to give it a menu item.
+// Add a page here to give it a menu item.
+// Its route must also be enabled in src/resources/once-ui.config.ts.
 const navItems: { href: keyof typeof routes; icon: IconName; label: string }[] = [
   { href: "/about", icon: "person", label: about.label },
   { href: "/work", icon: "grid", label: work.label },
+  { href: "/contact", icon: "email", label: "Contact" },
   { href: "/blog", icon: "book", label: blog.label },
   { href: "/gallery", icon: "gallery", label: gallery.label },
 ];
@@ -68,6 +73,7 @@ export const Header = () => {
         height="80"
         zIndex={9}
       />
+
       <Row
         fitHeight
         className={styles.position}
@@ -78,13 +84,12 @@ export const Header = () => {
         padding="8"
         horizontal="center"
         data-border="rounded"
-        s={{
-          position: "fixed",
-        }}
+        s={{ position: "fixed" }}
       >
         <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
           {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
         </Row>
+
         <Row fillWidth horizontal="center">
           <Row
             background="page"
@@ -95,7 +100,12 @@ export const Header = () => {
             horizontal="center"
             zIndex={1}
           >
-            <Row gap="4" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
+            <Row
+              gap="4"
+              vertical="center"
+              textVariant="body-default-s"
+              suppressHydrationWarning
+            >
               {routes["/"] && (
                 <ToggleButton
                   prefixIcon="home"
@@ -104,7 +114,9 @@ export const Header = () => {
                   selected={pathname === "/"}
                 />
               )}
+
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
+
               {navItems.map(
                 (item) =>
                   routes[item.href] && (
@@ -117,6 +129,7 @@ export const Header = () => {
                           selected={pathname.startsWith(item.href)}
                         />
                       </Row>
+
                       <Row hide s={{ hide: false }}>
                         <ToggleButton
                           prefixIcon={item.icon}
@@ -128,6 +141,7 @@ export const Header = () => {
                     </Fragment>
                   ),
               )}
+
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
@@ -137,6 +151,7 @@ export const Header = () => {
             </Row>
           </Row>
         </Row>
+
         <Flex fillWidth horizontal="end" vertical="center">
           <Flex
             paddingRight="12"
