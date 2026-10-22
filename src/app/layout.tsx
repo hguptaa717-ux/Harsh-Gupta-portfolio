@@ -27,8 +27,7 @@ export async function generateMetadata() {
   });
 }
 
-// viewport-fit=cover lets the bottom menu sit above the home indicator
-// (see Header.module.scss) instead of the browser letterboxing the page.
+// viewport-fit=cover lets the bottom menu sit above the home indicator.
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -61,7 +60,6 @@ export default async function RootLayout({
               (function() {
                 try {
                   const root = document.documentElement;
-                  const defaultTheme = 'system';
 
                   const config = ${JSON.stringify({
                     brand: style.brand,
@@ -82,17 +80,17 @@ export default async function RootLayout({
 
                   const resolveTheme = (themeValue) => {
                     if (!themeValue || themeValue === 'system') {
-                      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                      return window.matchMedia('(prefers-color-scheme: dark)').matches
+                        ? 'dark'
+                        : 'light';
                     }
                     return themeValue;
                   };
 
                   const savedTheme = localStorage.getItem('data-theme');
-                  const resolvedTheme = resolveTheme(savedTheme);
-                  root.setAttribute('data-theme', resolvedTheme);
+                  root.setAttribute('data-theme', resolveTheme(savedTheme));
 
-                  const styleKeys = Object.keys(config);
-                  styleKeys.forEach(key => {
+                  Object.keys(config).forEach((key) => {
                     const value = localStorage.getItem('data-' + key);
                     if (value) {
                       root.setAttribute('data-' + key, value);
@@ -161,7 +159,7 @@ export default async function RootLayout({
             />
           </RevealFx>
 
-          {/* Subtle animated analytics network behind the page content */}
+          {/* Animated analytics background */}
           <svg
             aria-hidden="true"
             viewBox="0 0 1440 900"
@@ -173,11 +171,27 @@ export default async function RootLayout({
               height: "100vh",
               pointerEvents: "none",
               zIndex: 0,
-              opacity: 0.55,
+              opacity: 0.72,
             }}
           >
             <style>
               {`
+                .analytics-wash {
+                  fill: rgba(218, 244, 255, 0.48);
+                }
+
+                .analytics-glow {
+                  opacity: 0.46;
+                }
+
+                :root[data-theme="dark"] .analytics-wash {
+                  fill: rgba(7, 25, 43, 0.3);
+                }
+
+                :root[data-theme="dark"] .analytics-glow {
+                  opacity: 0.25;
+                }
+
                 @media (prefers-reduced-motion: reduce) {
                   .moving-particle,
                   .pulse-node {
@@ -188,11 +202,27 @@ export default async function RootLayout({
             </style>
 
             <defs>
+              <radialGradient id="cyanGlow">
+                <stop offset="0%" stopColor="#70e7f5" stopOpacity="0.8" />
+                <stop offset="45%" stopColor="#66d8ee" stopOpacity="0.34" />
+                <stop offset="100%" stopColor="#66d8ee" stopOpacity="0" />
+              </radialGradient>
+
+              <radialGradient id="blueGlow">
+                <stop offset="0%" stopColor="#8acaff" stopOpacity="0.6" />
+                <stop offset="48%" stopColor="#8acaff" stopOpacity="0.24" />
+                <stop offset="100%" stopColor="#8acaff" stopOpacity="0" />
+              </radialGradient>
+
               <linearGradient id="analyticsLine" x1="0" y1="1" x2="1" y2="0">
                 <stop offset="0%" stopColor="#55c6d6" stopOpacity="0.08" />
                 <stop offset="50%" stopColor="#45b8cf" stopOpacity="0.5" />
                 <stop offset="100%" stopColor="#6ba8ef" stopOpacity="0.12" />
               </linearGradient>
+
+              <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="48" />
+              </filter>
 
               <path
                 id="leftDataFlow"
@@ -204,12 +234,29 @@ export default async function RootLayout({
               />
             </defs>
 
-            {/* Fine chart-like connections around the page edges */}
-            <g
-              fill="none"
-              stroke="url(#analyticsLine)"
-              strokeWidth="1.5"
-            >
+            {/* Change the background tint while letting the original gradient show through */}
+            <rect className="analytics-wash" width="1440" height="900" />
+
+            {/* Soft cyan and blue glow */}
+            <circle
+              className="analytics-glow"
+              cx="490"
+              cy="360"
+              r="330"
+              fill="url(#cyanGlow)"
+              filter="url(#softGlow)"
+            />
+            <circle
+              className="analytics-glow"
+              cx="1060"
+              cy="590"
+              r="300"
+              fill="url(#blueGlow)"
+              filter="url(#softGlow)"
+            />
+
+            {/* Chart-like connections kept near the edges */}
+            <g fill="none" stroke="url(#analyticsLine)" strokeWidth="1.5">
               <path d="M -20 690 L 120 620 L 235 665 L 355 565 L 490 610 L 620 530" />
               <path d="M 820 340 L 950 390 L 1075 305 L 1190 350 L 1325 245 L 1470 290" />
               <path d="M 80 300 L 205 355 L 300 285 L 420 330" />
@@ -232,7 +279,7 @@ export default async function RootLayout({
               <circle cx="1270" cy="640" r="4" />
             </g>
 
-            {/* Slowly moving points suggest data flowing through a chart */}
+            {/* Moving points suggest data flowing through charts */}
             <circle className="moving-particle" r="4" fill="#299db7">
               <animateMotion dur="12s" repeatCount="indefinite">
                 <mpath href="#leftDataFlow" />
@@ -245,14 +292,8 @@ export default async function RootLayout({
               </animateMotion>
             </circle>
 
-            {/* Gentle node pulses */}
-            <circle
-              className="pulse-node"
-              cx="355"
-              cy="565"
-              r="4"
-              fill="#42b9cc"
-            >
+            {/* Gentle pulses on selected data points */}
+            <circle className="pulse-node" cx="355" cy="565" r="4" fill="#42b9cc">
               <animate
                 attributeName="r"
                 values="3;6;3"
@@ -267,13 +308,7 @@ export default async function RootLayout({
               />
             </circle>
 
-            <circle
-              className="pulse-node"
-              cx="1075"
-              cy="305"
-              r="4"
-              fill="#5b9fe0"
-            >
+            <circle className="pulse-node" cx="1075" cy="305" r="4" fill="#5b9fe0">
               <animate
                 attributeName="r"
                 values="3;6;3"
