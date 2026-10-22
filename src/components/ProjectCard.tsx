@@ -10,6 +10,7 @@ import {
   SmartLink,
   Text,
 } from "@once-ui-system/core";
+import styles from "./ProjectCard.module.scss";
 
 interface ProjectCardProps {
   href: string;
@@ -38,7 +39,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     .filter(Boolean);
 
   return (
-    <Column fillWidth gap="m">
+    <Column className={styles.glassCard} fillWidth gap="m">
       <Carousel
         sizes="(max-width: 960px) 100vw, 960px"
         items={images.map((image) => ({
