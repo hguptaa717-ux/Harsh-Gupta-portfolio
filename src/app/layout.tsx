@@ -15,6 +15,7 @@ import {
   SpacingToken,
 } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from "@/components";
+import { IntroLoader } from "@/components/IntroLoader";
 import { baseURL, effects, fonts, style, dataStyle, home, person } from "@/resources";
 
 export async function generateMetadata() {
@@ -137,6 +138,8 @@ export default async function RootLayout({
           padding="0"
           horizontal="center"
         >
+          <IntroLoader />
+
           <RevealFx fill position="absolute">
             <Background
               mask={{
