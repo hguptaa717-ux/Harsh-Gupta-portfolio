@@ -105,26 +105,6 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "AGMS & Co",
-        timeframe: "December 2024 – August 2025",
-        role: "Accounts Assistant",
-        achievements: [
-          <>
-            Validated and reconciled more than 100 monthly financial
-            transactions across 20+ client accounts using Excel trackers.
-          </>,
-          <>
-            Supported GST and TDS compliance for 15+ entities and coordinated
-            documentation for regulatory filings.
-          </>,
-          <>
-            Streamlined payroll workflows for 50+ employees, reducing manual
-            errors by approximately 20%.
-          </>,
-        ],
-        images: [],
-      },
-      {
         company: "Agile Capital Services",
         timeframe: "May 2026 – June 2026",
         role: "Management Trainee Intern",
@@ -147,6 +127,40 @@ const about: About = {
         images: [],
       },
       {
+        company: "UMEED A DROP OF HOPE (NGO)",
+        timeframe: "January 2026 – March 2026",
+        role: "Student Volunteer",
+        achievements: [
+          <>
+            Contributed to social welfare and community development through
+            hygiene awareness drives, plantation initiatives, and teaching
+            children in rural areas. Gained experience in community engagement
+            and grassroots initiatives.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "AGMS & Co",
+        timeframe: "December 2024 – August 2025",
+        role: "Accounts Assistant",
+        achievements: [
+          <>
+            Validated and reconciled more than 100 monthly financial
+            transactions across 20+ client accounts using Excel trackers.
+          </>,
+          <>
+            Supported GST and TDS compliance for 15+ entities and coordinated
+            documentation for regulatory filings.
+          </>,
+          <>
+            Streamlined payroll workflows for 50+ employees, reducing manual
+            errors by approximately 20%.
+          </>,
+        ],
+        images: [],
+      },
+      {
         company: "JS Bedi & Associates",
         timeframe: "January 2024 – February 2024",
         role: "Accounting Intern",
@@ -163,31 +177,19 @@ const about: About = {
         timeframe: "June 2023",
         role: "Account Assistant Intern",
         achievements: [
-          <>Performed GST reconciliation and prepared financial statements from trial balance data using Excel.</>,
-          <>Created client profiles in Computax and assisted with Form 16 preparation.</>,
-          <>Recorded bank, credit card, sales, purchase, and TDS entries in Tally Prime.</>,
+          <>
+            Performed GST reconciliation and prepared financial statements from
+            trial balance data using Excel.
+          </>,
+          <>
+            Created client profiles in Computax and assisted with Form 16
+            preparation.
+          </>,
+          <>
+            Recorded bank, credit card, sales, purchase, and TDS entries in
+            Tally Prime.
+          </>,
         ],
-        images: [],
-      },
-      {
-        company: "JSBA Consulting Pvt. Ltd.",
-        timeframe: "January 2023 – February 2023",
-        role: "Account Assistant Intern",
-        achievements: [],
-        images: [],
-      },
-      {
-        company: "KBDS & Co.",
-        timeframe: "September 2022",
-        role: "Account Assistant Intern",
-        achievements: [],
-        images: [],
-      },
-      {
-        company: "Nitin Associates",
-        timeframe: "March 2022",
-        role: "Account Assistant Intern",
-        achievements: [],
         images: [],
       },
     ],
