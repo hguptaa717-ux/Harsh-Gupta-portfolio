@@ -221,28 +221,23 @@ const about: About = {
   },
   technical: {
     display: true,
-    title: "Tools & Skills",
+    title: "Skills",
     skills: [
       {
-        title: "Analytics and reporting",
-        description: <>Microsoft Excel, Power BI, and Tableau.</>,
+        title: "Tools",
+        description: <>Power BI, Tableau, Excel, and Tally.</>,
         tags: [],
         images: [],
       },
       {
-        title: "Business and finance operations",
-        description: (
-          <>
-            Operational data analysis, transaction reconciliation, payroll
-            workflows, and GST/TDS documentation.
-          </>
-        ),
+        title: "Analytics",
+        description: <>Dashboard development, KPI tracking, and churn analysis.</>,
         tags: [],
         images: [],
       },
       {
-        title: "Other tools",
-        description: <>Tally and Microsoft PowerPoint.</>,
+        title: "Domain",
+        description: <>Accounting and finance.</>,
         tags: [],
         images: [],
       },
