@@ -91,12 +91,23 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        I’m pursuing an MBA in Business Analytics at Amity Business School,
-        Amity University Uttar Pradesh. My experience includes analyzing
-        operational data, reconciling financial transactions, supporting
-        compliance, and improving Excel-based workflows. I’m interested in
-        using data and clear communication to help teams understand business
-        problems and make informed decisions.
+        I’m an MBA candidate in Business Analytics at Amity University with a
+        background in accounting and finance. After working with financial
+        records, payroll, and bank transactions at AGMS &amp; Co. and during my
+        internships, I became interested in what happens after the books are
+        closed: how that data can explain what’s actually going on in a
+        business.
+        <br />
+        <br />
+        I build dashboards and reports in Power BI, Tableau, and Excel, and
+        I’m Power BI certified. My projects include a Telco customer churn
+        dashboard, a mutual fund trends dashboard, and a retail sales
+        dashboard, each aimed at turning raw numbers into clear decisions.
+        <br />
+        <br />
+        I’m seeking Business Analyst opportunities where I can use my finance
+        background and analytics skills to help teams make informed,
+        data-driven decisions.
       </>
     ),
   },
