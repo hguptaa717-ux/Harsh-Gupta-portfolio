@@ -45,7 +45,8 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name} | Business Analyst Portfolio`,
-  description: "Business analytics portfolio of Harsh Gupta.",
+  description:
+  "MBA Business Analytics candidate skilled in Power BI, Tableau, Excel, and SQL. Explore dashboards, churn analysis, and sales insights.",
   headline: <>Turning business data into clear, practical insights</>,
   featured: {
     display: false,
