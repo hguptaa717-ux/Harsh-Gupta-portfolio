@@ -90,28 +90,54 @@ export default function Home() {
           </RevealFx>
 
           <RevealFx paddingTop="12" delay={400} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={about.path}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
+            <Row
+              gap="12"
+              vertical="center"
+              horizontal="center"
+              s={{ direction: "column" }}
             >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                    aria-hidden
-                  />
-                )}
-                {about.title}
-              </Row>
-            </Button>
+              <Button
+                id="about"
+                data-border="rounded"
+                href={about.path}
+                variant="secondary"
+                size="m"
+                weight="default"
+                arrowIcon
+              >
+                <Row gap="8" vertical="center" paddingRight="4">
+                  {about.avatar.display && (
+                    <Avatar
+                      marginRight="8"
+                      style={{ marginLeft: "-0.75rem" }}
+                      src={person.avatar}
+                      size="m"
+                      aria-hidden
+                    />
+                  )}
+                  {about.title}
+                </Row>
+              </Button>
+
+              <a
+                href="/harsh-gupta-resume.pdf"
+                download="Harsh-Gupta-Resume.pdf"
+                aria-label="Download Harsh Gupta's resume"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "12px 18px",
+                  border: "1px solid var(--neutral-border-medium)",
+                  borderRadius: "999px",
+                  color: "var(--neutral-on-background-strong)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                }}
+              >
+                Download Resume
+              </a>
+            </Row>
           </RevealFx>
         </Column>
       </Column>
