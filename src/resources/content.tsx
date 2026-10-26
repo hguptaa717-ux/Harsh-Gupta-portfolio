@@ -63,10 +63,11 @@ const home: Home = {
   },
   subline: (
     <>
-      I’m {person.firstName}, a Business Analytics MBA candidate interested in
-      business analysis, reporting, and process improvement. I use tools such
-      as Excel, Power BI, and Tableau to organize information and communicate
-      useful findings.
+      Business Analytics MBA candidate | Power BI certified | Finance and
+      accounting background. I build dashboards that turn raw data into
+      decisions.
+      <br />
+      Open to Business Analyst roles, graduating 2027.
     </>
   ),
 };
