@@ -46,7 +46,7 @@ const home: Home = {
   label: "Home",
   title: `${person.name} | Business Analyst Portfolio`,
   description:
-  "MBA Business Analytics candidate skilled in Power BI, Tableau, Excel, and SQL. Explore dashboards, churn analysis, and sales insights.",
+    "MBA Business Analytics candidate skilled in Power BI, Tableau, Excel, and SQL. Explore dashboards, churn analysis, and sales insights.",
   headline: <>Turning business data into clear, practical insights</>,
   featured: {
     display: false,
@@ -255,7 +255,7 @@ const blog: Blog = {
 
 const work: Work = {
   path: "/work",
-  label: "Work",
+  label: "Projects",
   title: `Projects – ${person.name}`,
   description: `Business analysis and data visualization projects by ${person.name}.`,
 };
